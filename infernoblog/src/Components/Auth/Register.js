@@ -12,30 +12,29 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-function CopyrightNotice(props) {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import { signUpUser } from '../../firebase'; // Adjust the import path
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    console.log({
-      email: formData.get('email'),
-      password: formData.get('password'),
-    });
+
+    const email = formData.get('email');
+    const password = formData.get('password');
+    const firstName = formData.get('firstName');
+    const lastName = formData.get('lastName');
+
+    const registrationSuccessful = await signUpUser(email, password, firstName, lastName);
+
+    if (registrationSuccessful) {
+      // Registration was successful, you can add code for redirection or other actions here
+      console.log('Registration successful!');
+    } else {
+      // Handle registration failure here (e.g., show an error message)
+      console.log('Registration failed.');
+    }
   };
 
   return (
@@ -124,7 +123,6 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-        <CopyrightNotice sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );
