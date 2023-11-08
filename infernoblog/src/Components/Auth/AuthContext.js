@@ -19,8 +19,10 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     });
 
-    return unsubscribe;
-  }, []);
+    return () => {
+      unsubscribe(); // Unsubscribe when the component unmounts
+    };
+  }, [auth]); // Include 'auth' as a dependency
 
   const signIn = () => {
     // Implement sign-in logic if needed

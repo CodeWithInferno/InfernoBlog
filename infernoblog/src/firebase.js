@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged  } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword  } from "firebase/auth";
 import { getFirestore, setDoc, doc } from "firebase/firestore";
 
 // Initialize Firebase using your configuration
