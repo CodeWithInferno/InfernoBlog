@@ -1,16 +1,31 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
-import { useAuth } from './Auth/AuthContext';
+import slugify from 'slugify'; // You'll need to install this library
+// Import the slugify library or function that generates slugs
 
 function WriteBlog() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
-  const [slug, setSlug] = useState('');
+  const [slug, setSlug] = useState(''); // Add a state for the slug
   const [imageUrl, setImageUrl] = useState('');
+  const [author, setAuthor] = useState('');
 
-  const { currentUser } = useAuth();
+  // Function to generate a slug from the title
+  const generateSlug = (value) => {
+    return slugify(value, {
+      replacement: '-', // Replace spaces with a dash
+      lower: true, // Convert to lowercase
+    });
+  };
+
+  // Update the slug when the title changes
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+    const newSlug = generateSlug(e.target.value);
+    setSlug(newSlug);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +39,7 @@ function WriteBlog() {
         category,
         slug,
         imageUrl,
-        author: currentUser.uid,
+        author,
         createdAt: new Date(),
       });
 
@@ -47,7 +62,7 @@ function WriteBlog() {
             type="text"
             placeholder="Enter title"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={handleTitleChange} 
             required
           />
         </Form.Group>
@@ -76,10 +91,9 @@ function WriteBlog() {
           <Form.Label>Slug</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter slug"
+            placeholder="Auto-generated slug"
             value={slug}
-            onChange={(e) => setSlug(e.target.value)}
-            required
+            readOnly
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -89,6 +103,16 @@ function WriteBlog() {
             placeholder="Enter image URL"
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
+            required
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Author</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter author's name"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
             required
           />
         </Form.Group>
