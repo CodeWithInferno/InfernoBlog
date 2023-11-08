@@ -13,10 +13,15 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { signUpUser } from '../../firebase'; // Adjust the import path
+import { useAuth } from './AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const { signIn } = useAuth();
+  const navigate = useNavigate(); // Use the useNavigate hook
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -29,8 +34,11 @@ export default function SignUp() {
     const registrationSuccessful = await signUpUser(email, password, firstName, lastName);
 
     if (registrationSuccessful) {
-      // Registration was successful, you can add code for redirection or other actions here
-      console.log('Registration successful!');
+      // Registration was successful, set isAuthenticated to true
+      signIn();
+
+      // Redirect to the "/home" route upon successful signup
+      navigate('/home');
     } else {
       // Handle registration failure here (e.g., show an error message)
       console.log('Registration failed.');
@@ -116,7 +124,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signin" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

@@ -1,20 +1,33 @@
 import React, { useState } from 'react';
-import { AppBar, Box, Toolbar, IconButton, Typography, Menu, MenuItem, Button, Avatar, Tooltip } from '@mui/material';
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  MenuItem,
+  Button,
+  Avatar,
+  Tooltip,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom for navigation
+import { Link } from 'react-router-dom';
 import AdbIcon from '@mui/icons-material/Adb';
-
+import { useAuth } from './Auth/AuthContext'; // Import your AuthContext
 
 const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Setting1', 'Setting2', 'Setting3']; // Define your settings array here
+const settings = ['Setting1', 'Setting2', 'Setting3'];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const { currentUser, signOut } = useAuth(); // Use the useAuth hook to access the current user and sign-out function
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -27,8 +40,6 @@ function Header() {
     setAnchorElUser(null);
   };
 
-  const isAuthenticated = false; // You can change this to check the user's authentication state
-
   return (
     <AppBar position="static">
       <Toolbar disableGutters>
@@ -36,7 +47,7 @@ function Header() {
         <Typography
           variant="h6"
           noWrap
-          component={Link} // Use Link component for the logo link
+          component={Link}
           to="/"
           sx={{
             mr: 2,
@@ -54,7 +65,7 @@ function Header() {
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
           <IconButton
             size="large"
-            aria-label="account of current user"
+            aria-label="account of the current user"
             aria-controls="menu-appbar"
             aria-haspopup="true"
             onClick={handleOpenNavMenu}
@@ -91,7 +102,7 @@ function Header() {
         <Typography
           variant="h5"
           noWrap
-          component={Link} // Use Link component for the logo link
+          component={Link}
           to="/"
           sx={{
             mr: 2,
@@ -118,41 +129,47 @@ function Header() {
           ))}
         </Box>
 
-        {isAuthenticated ? (
-          <>
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+        {currentUser ? (
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="User Avatar" src="/static/images/avatar.jpg" /> {/* Replace with the user's avatar */}
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+              <MenuItem
+                onClick={() => {
+                  signOut();
+                  handleCloseUserMenu();
                 }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-          </>
+                Sign Out
+              </MenuItem>
+            </Menu>
+          </Box>
         ) : (
-          <Button variant="contained" color="primary" component={Link} to="/signup"> {/* Use Link for Get Started button */}
-            Get Started
+          <Button variant="contained" color="primary" component={Link} to="/signup">
+            {currentUser ? 'Settings' : 'Get Started'}
           </Button>
         )}
       </Toolbar>
