@@ -5,6 +5,8 @@ import Home from './Components/home';
 import SignUp from './Components/Auth/Register';
 import SignIn from './Components/Auth/Login';
 import LandingPage from './Components/LandingPage';
+import BlogListMUI from './Components/BlogList'
+import WriteBlog from './Components/WriteBlog'
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/bloglist" element={<BlogListMUI />} />
+          <Route path="/WriteBlog" element={<WriteBlog />} />
         </Routes>
       </Router>
     </div>
