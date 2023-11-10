@@ -138,7 +138,6 @@ function BlogPost() {
       <div className="recommendation-container">
       <Recommendation slug={slug} /> {/* Use the Recommendation component here */}
 
-        {/* Repeat the above block for each recommended blog */}
       </div>
     </div>
   );

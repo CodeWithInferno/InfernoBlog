@@ -7,7 +7,9 @@ import SignIn from './Components/Auth/Login';
 import LandingPage from './Components/LandingPage';
 import BlogListMUI from './Components/BlogList';
 import WriteBlog from './Components/WriteBlog';
+import './styles/tailwind.css';
 import BlogPost from './Components/BlogPost'; // Create this component
+// import Search from './Components/Search';
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
           <Route path="/bloglist" element={<BlogListMUI />} />
           <Route path="/WriteBlog" element={<WriteBlog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          {/* <Route path="/search/:query/*" element={<Search />} /> */}
         </Routes>
+
       </Router>
     </div>
   );

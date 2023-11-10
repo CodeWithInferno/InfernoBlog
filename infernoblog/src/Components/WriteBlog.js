@@ -4,7 +4,7 @@ import 'react-quill/dist/quill.snow.css';
 import { Button, TextField, Container, Typography, Paper, Box } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+// import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const styles = {
   container: {
@@ -84,7 +84,7 @@ function WriteBlog() {
   };
 
   const uploadImageToImgur = async (file) => {
-    const clientId = '7ba8e4aa4efe1e0'; // Replace with your Imgur API Client ID
+    const clientId = 'bddb722c37acb85'; // Replace with your Imgur API Client ID
 
     const formData = new FormData();
     formData.append('image', file);
