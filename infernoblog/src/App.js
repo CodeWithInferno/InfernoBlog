@@ -8,13 +8,16 @@ import LandingPage from './Components/LandingPage';
 import BlogListMUI from './Components/BlogList';
 import WriteBlog from './Components/WriteBlog';
 import './styles/tailwind.css';
-import BlogPost from './Components/BlogPost'; // Create this component
-// import Search from './Components/Search';
-import BlogList from './Components/BlogList'
-import FooterComponent from './Components/Footer'
-import ReaderCard from './Components/RelatedMovie'
+import BlogPost from './Components/BlogPost';
+import BlogList from './Components/BlogList';
+import FooterComponent from './Components/Footer';
+import ReaderCard from './Components/RelatedMovie';
+// import { LoadingProvider } from './Components/LoadingContext';
+import RelatedToTv from './Components/RelatedToTv';
+// import { useLoading } from './Components/LoadingContext'; // Import the useLoading hook
 
 function App() {
+
   return (
     <div className="App">
       <Router>
@@ -29,6 +32,7 @@ function App() {
           <Route path="/WriteBlog" element={<WriteBlog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/reader" element={<ReaderCard />} />
+          <Route path="/tv" element={<RelatedToTv />} />
         </Routes>
         <FooterComponent />
       </Router>

@@ -251,13 +251,13 @@
 
 
 
-
 import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Button, TextField, Container, Typography, Paper, Box, Select, MenuItem } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
+
 
 const styles = {
   container: {
@@ -507,4 +507,21 @@ function WriteBlog() {
 }
 
 export default WriteBlog;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
