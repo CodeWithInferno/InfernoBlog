@@ -25,7 +25,7 @@ function App() {
         <Routes>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/blogs" element={<BlogList />} />
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<BlogList />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/home" element={<Home />} />
           <Route path="/bloglist" element={<BlogListMUI />} />
@@ -41,3 +41,13 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
