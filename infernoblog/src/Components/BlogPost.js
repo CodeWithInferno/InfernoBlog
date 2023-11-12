@@ -76,6 +76,8 @@ import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import './BlogPost.css';
 import Recommendation from './Recommendation'; // Import the Recommendation component
 
+
+
 // BlogPost Component
 function BlogPost() {
   const { slug } = useParams();
@@ -133,13 +135,9 @@ function BlogPost() {
         </p>
       </div>
       <div className="blog-content" dangerouslySetInnerHTML={{ __html: blogContent }} />
-
-
-      <div className="recommendation-container">
-      <Recommendation slug={slug} /> {/* Use the Recommendation component here */}
-
+      
       </div>
-    </div>
+      
   );
 }
 

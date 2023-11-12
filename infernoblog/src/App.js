@@ -10,6 +10,9 @@ import WriteBlog from './Components/WriteBlog';
 import './styles/tailwind.css';
 import BlogPost from './Components/BlogPost'; // Create this component
 // import Search from './Components/Search';
+import BlogList from './Components/BlogList'
+import FooterComponent from './Components/Footer'
+import ReaderCard from './Components/RelatedMovie'
 
 function App() {
   return (
@@ -18,15 +21,16 @@ function App() {
         <Header />
         <Routes>
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/blogs" element={<BlogList />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/home" element={<Home />} />
           <Route path="/bloglist" element={<BlogListMUI />} />
           <Route path="/WriteBlog" element={<WriteBlog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
-          {/* <Route path="/search/:query/*" element={<Search />} /> */}
+          <Route path="/reader" element={<ReaderCard />} />
         </Routes>
-
+        <FooterComponent />
       </Router>
     </div>
   );
