@@ -1,55 +1,50 @@
 import React from 'react';
 import { Divider, Typography, Button, IconButton } from '@mui/material';
 import { Instagram, Facebook, LinkedIn, Pinterest, Twitter } from '@mui/icons-material';
-// import './BlogPost.css';
 
 const FooterComponent = () => {
   const buttonStyle = {
-    backgroundColor: '#fff', // White background
-    color: 'black', // Black text color
-    margin: '0 20px',
-    marginTop: '20px', // Adjust the margin as needed
-
-    boxShadow: 'none', // Remove the box shadow
+    backgroundColor: '#fff',
+    color: 'black',
+    margin: '10px',
+    boxShadow: 'none',
     '&:hover': {
-      color: 'red', // Change color on hover
+      color: 'red',
     },
-    fontFamily: '"IBM Plex Sans", sans-serif', // Add font-family property
+    fontFamily: '"IBM Plex Sans", sans-serif',
   };
 
   const footerTitleStyle = {
     fontWeight: 'bold',
     margin: '20px 10px 10px 10px',
     fontFamily: '"IBM Plex Sans", sans-serif',
-    marginTop: '20px', // Adjust the margin as needed
-    // Add font-family property
   };
 
   const socialMediaStyle = {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: '30px', // Adjust the margin as needed
+    marginTop: '20px',
   };
 
   return (
     <div>
-            <Divider
+      <Divider
         variant="middle"
         sx={{
           backgroundImage:
-          'linear-gradient(90deg, transparent, #000, transparent)',
+            'linear-gradient(90deg, transparent, #000, transparent)',
           height: '1px',
           border: 'none',
           marginBlock: '10px',
         }}
       />
 
-      <footer>
+      <footer style={{ padding: '40px 0' }}>
         <Typography variant="h6" align="center" style={footerTitleStyle}>
           Inferno Blog
         </Typography>
 
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
           <Button variant="contained" style={buttonStyle}>
             Button 1
           </Button>
@@ -67,7 +62,7 @@ const FooterComponent = () => {
           </Button>
         </div>
 
-        <div style={socialMediaStyle}>
+        <div style={{ ...socialMediaStyle, marginTop: '30px' }}>
           <IconButton>
             <Instagram />
           </IconButton>
