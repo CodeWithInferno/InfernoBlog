@@ -17,10 +17,8 @@ import {
   Avatar,
   Tooltip,
   Divider,
-  InputBase,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
+
 import { Link } from 'react-router-dom';
 import AdbIcon from '@mui/icons-material/Adb';
  // Import the Search component
@@ -30,33 +28,33 @@ const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Setting1', 'Setting2', 'Setting3'];
 
 function Header() {
-  const [anchorElNav, setAnchorElNav] = useState(null);
+  // const [ setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  // const [searchOpen, setSearchOpen] = useState(false);
+  const [ setSearchQuery] = useState('');
   const { currentUser, signOut } = useAuth();
-  const [allPages, setAllPages] = useState(pages);
+  const [ setAllPages] = useState(pages);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+  // const handleOpenNavMenu = (event) => {
+  //   setAnchorElNav(event.currentTarget);
+  // };
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  // const handleCloseNavMenu = () => {
+  //   setAnchorElNav(null);
+  // };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
-  const handleToggleSearch = () => {
-    setSearchOpen(!searchOpen);
-  };
-
+  // const handleToggleSearch = () => {
+  //   setSearchOpen(!searchOpen);
+  // };
+// eslint-disable-next-line
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
     const filteredPages = pages.filter((page) =>
@@ -64,11 +62,7 @@ function Header() {
     );
     setAllPages(filteredPages);
   };
-
-  const handleSearchSubmit = () => {
-    // Call the handleSearch function from Search.js with the searchQuery
-    handleSearch(searchQuery);
-  };
+  // eslint-disable-next-line
   const truncateContent = (content, maxLength) => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(content, 'text/html');
@@ -180,3 +174,9 @@ function Header() {
 }
 
 export default Header;
+
+
+
+
+
+
